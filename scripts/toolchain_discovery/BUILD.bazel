@@ -1,0 +1,17 @@
+# gazelle:resolve py pydantic @pip//pydantic:pydantic
+# gazelle:resolve py pydantic.BaseModel @pip//pydantic:pydantic
+# gazelle:resolve py pydantic.Field @pip//pydantic:pydantic
+# gazelle:resolve py rich @pip//rich:rich
+# gazelle:resolve py rich.console @pip//rich:rich
+# gazelle:resolve py rich.console.Console @pip//rich:rich
+# gazelle:resolve py rich.table @pip//rich:rich
+# gazelle:resolve py rich.table.Table @pip//rich:rich
+
+load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
+
+compile_pip_requirements(
+    name = "toolchain_discovery-requirements",
+    extra_args = ["--allow-unsafe"],
+    requirements_in = "pyproject.toml",
+    requirements_txt = "//bazel/depfiles:requirements_lock.txt",
+)

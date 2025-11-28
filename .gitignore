@@ -2,3 +2,6 @@ bazel-bin
 bazel-out
 bazel-testlogs
 bazel-monorepo
+
+# Python
+__pycache__/
