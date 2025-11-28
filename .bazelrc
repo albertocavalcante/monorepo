@@ -1,0 +1,5 @@
+# https://bazel.build/run/bazelrc
+import %workspace%/bazel/flags/.protoc.bazelrc
+import %workspace%/bazel/flags/.debug.bazelrc
+
+common --announce_rc

@@ -1,0 +1,6 @@
+# buildifier: disable=modstring
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+use_repo(
+    node, 
+    "nodejs_toolchains"
+)

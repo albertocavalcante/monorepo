@@ -1,0 +1,45 @@
+"""
+albertocavalcante monorepo
+"""
+
+module(
+    name = "albertocavalcante_monorepo",
+)
+
+# Supply Chain / SBOM
+bazel_dep(name = "package_metadata", version = "0.0.7", dev_dependency = True)
+
+# Bazel Lib
+bazel_dep(name = "bazel_lib", version = "3.0.0", dev_dependency = True)
+bazel_dep(name = "bazel_skylib", version = "1.8.2", dev_dependency = True)
+
+# Protocol Buffers
+# NB: this must come BEFORE bazel_dep(name = "protobuf") because they register the from-source toolchain,
+# and the first registration wins.
+bazel_dep(name = "toolchains_protoc", version = "0.4.3", dev_dependency = True)
+bazel_dep(name = "rules_proto", version = "7.1.0", dev_dependency = True)
+
+# Toolchain Rules
+bazel_dep(name = "rules_nodejs", version = "6.6.2", dev_dependency = True)
+
+# Gazelle
+bazel_dep(name = "gazelle", version = "0.47.0", dev_dependency = True)
+bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.8.2", dev_dependency = True)
+bazel_dep(name = "rules_python_gazelle_plugin", version = "1.7.0-rc4", dev_dependency = True)
+
+# Language Rules
+bazel_dep(name = "rules_go", version = "0.59.0", dev_dependency = True)
+bazel_dep(name = "rules_python", version = "1.7.0", dev_dependency = True)
+
+# Tools
+bazel_dep(name = "buildifier_prebuilt", version = "8.2.1", dev_dependency = True)
+
+# Declared Toolchains
+include("//bazel/toolchains:toolchains.MODULE.bazel")
+
+# Use the extension to call the `pip_repository` rule that invokes `pip`, with `incremental` set.
+# Accepts a locked/compiled requirements file and installs the dependencies listed within.
+# Those dependencies become available in a generated `requirements.bzl` file.
+# You can instead check this `requirements.bzl` file into your repo.
+# Because this project has different requirements for windows vs other
+# operating systems, we have requirements for each.

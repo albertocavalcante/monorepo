@@ -1,0 +1,43 @@
+# gazelle:resolve py pydantic @pip//pydantic:pydantic
+# gazelle:resolve py pydantic.BaseModel @pip//pydantic:pydantic
+# gazelle:resolve py pydantic.Field @pip//pydantic:pydantic
+# gazelle:resolve py rich @pip//rich:rich
+# gazelle:resolve py rich.console @pip//rich:rich
+# gazelle:resolve py rich.console.Console @pip//rich:rich
+# gazelle:resolve py rich.table @pip//rich:rich
+# gazelle:resolve py rich.table.Table @pip//rich:rich
+
+load("@gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@pip//:requirements.bzl", "all_whl_requirements")
+load("@rules_python_gazelle_plugin//manifest:defs.bzl", "gazelle_python_manifest")
+load("@rules_python_gazelle_plugin//modules_mapping:def.bzl", "modules_mapping")
+
+gazelle_binary(
+    name = "gazelle-bin",
+    languages = [
+        "@gazelle//language/go",
+        "@rules_python_gazelle_plugin//python",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+gazelle(
+    name = "gazelle",
+    gazelle = ":gazelle-bin",
+    visibility = ["//visibility:public"],
+)
+
+modules_mapping(
+    name = "modules_map",
+    wheels = all_whl_requirements,
+)
+
+# https://github.com/bazel-contrib/rules_python/tree/1.5.1/gazelle
+# https://github.com/bazel-contrib/rules_python/blob/1.5.1/gazelle/manifest/defs.bzl
+gazelle_python_manifest(
+    name = "gazelle_python_manifest",
+    manifest = ":gazelle_python.yml",
+    modules_mapping = ":modules_map",
+    pip_repository_name = "pip",
+    requirements = "//bazel/depfiles:requirements_lock.txt",
+)

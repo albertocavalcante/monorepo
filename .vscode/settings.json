@@ -1,0 +1,4 @@
+{
+    "bazel.queriesShareServer": false,
+    "bazel.buildifierExecutable": "@buildifier_prebuilt//:buildifier",
+}

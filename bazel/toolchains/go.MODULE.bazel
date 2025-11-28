@@ -1,0 +1,3 @@
+# buildifier: disable=modstring
+go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
+go_sdk.download(version = "1.25.4")

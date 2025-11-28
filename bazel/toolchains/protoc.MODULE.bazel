@@ -1,0 +1,6 @@
+# buildifier: disable=modstring
+protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
+protoc.toolchain(
+    # https://github.com/protocolbuffers/protobuf/releases
+    version = "v31.1",
+)

@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "bazelbuild.vscode-bazel",
+        "github.vscode-pull-request-github",
+        "tamasfe.even-better-toml"
+    ]
+}

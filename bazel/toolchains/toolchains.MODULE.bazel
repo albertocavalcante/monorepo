@@ -1,0 +1,11 @@
+# buildifier: disable=modstring
+include("//bazel/toolchains:go.MODULE.bazel")
+include("//bazel/toolchains:nodejs.MODULE.bazel")
+include("//bazel/toolchains:protoc.MODULE.bazel")
+include("//bazel/toolchains:python.MODULE.bazel")
+
+# FIXME(albertocavalcante): Local Toolchains are not working properly. Disabling for now.
+# register_toolchains(
+#     "@local_toolchains//:all",
+#     dev_dependency = True,
+# )
