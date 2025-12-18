@@ -1,9 +1,8 @@
 # -----------------------------------------------------------------------------
 # Dockerfile for Monorepo Development Container
-# Inspired by albertocavalcante/groovy-lsp
 # -----------------------------------------------------------------------------
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4
 
 # Arguments
 ARG USERNAME=vscode
@@ -11,7 +10,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 # Tool Versions
-ARG BAZELISK_VERSION=v1.25.0
+ARG BAZELISK_VERSION=v1.26.0
 ARG BUILDIFIER_VERSION=v8.2.1
 ARG GH_VERSION=2.64.0
 
