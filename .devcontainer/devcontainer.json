@@ -1,0 +1,35 @@
+{
+    "name": "albertocavalcante-monorepo",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash",
+                "bazel.executable": "/usr/local/bin/bazel",
+                "go.toolsManagement.checkForUpdates": "off",
+                "python.defaultInterpreterPath": "/usr/bin/python3"
+            },
+            "extensions": [
+                "bazelbuild.vscode-bazel",
+                "golang.go",
+                "ms-python.python",
+                "ms-vscode.cpptools",
+                "zxh404.vscode-proto3",
+                "esbenp.prettier-vscode",
+                "eamodio.gitlens",
+                "mhutchie.git-graph",
+                "redhat.vscode-yaml",
+                "ms-azuretools.vscode-docker",
+                "ms-vscode-remote.remote-containers"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "bash .devcontainer/post-create.sh",
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+}
